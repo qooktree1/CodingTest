@@ -19,13 +19,11 @@ for i in range(len(boxes)):
     if max_h < boxes[i][1]:
         max_h = boxes[i][1]  # 가장 큰 box 의 높이
         max_idx = boxes[i][0]  # 가장 큰 box 의 index
+# 가장 높이가 큰 box 의 인덱스를 max_h_lst 에 append
 for j in range(len(boxes)):
     if max_h == boxes[j][1]:
         max_h_lst.append(boxes[j][0])
-if len(max_h_lst) != 1:
-    area += (max_h_lst[-1] + 1 - max_h_lst[0]) * max_h
-else:
-    area += max_h
+area += (max_h_lst[-1] + 1 - max_h_lst[0]) * max_h
 st_w = boxes[0][0]
 st_h = boxes[0][1]
 for box in boxes:  # 왼쪽에서 가장 큰 box 까지
