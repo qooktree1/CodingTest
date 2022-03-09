@@ -1,0 +1,40 @@
+def ran(a,b,c):
+    r1=0
+    r2=0
+    for i in range(len(a)):
+        r1+=abs(a[i]-c[i])+abs(a[i]-c[i])
+        r2+=abs(b[i]-c[i])+abs(b[i]-c[i])
+    if r1<r2: return a
+    elif r1>r2: return b
+    elif r1==r2: return True
+
+def solution(numbers, hand):
+    answer = ''
+    # *:[1,1]
+    finger={1:[1,4], 2:[2,4], 3:[3,4], 4:[1,3], 5:[2,3], 6:[3,3], 7:[1,2], 8:[2,2], 9:[3,2],'*':[1,1], 0:[2,1], '#':[3,1]}
+    right_finger=finger['#']
+    left_finger=finger['*']
+    
+    for i in numbers:
+        if i==1 or i==4 or i==7:
+            answer+='L'
+            left_finger=finger[i]
+        elif i==3 or i==6 or i==9:
+            answer+='R'
+            right_finger=finger[i]
+        elif i==2 or i==5 or i==8 or i==0:
+            if ran(left_finger,right_finger,finger[i])==left_finger:
+                answer+='L'
+                left_finger=finger[i]
+            elif ran(left_finger,right_finger,finger[i])==right_finger:
+                answer+='R'
+                right_finger=finger[i]
+            elif ran(left_finger,right_finger,finger[i])==True:
+                if hand=="right":
+                    answer+='R'
+                    right_finger=finger[i]
+                elif hand=="left":
+                    answer+='L'
+                    left_finger=finger[i]
+            
+    return answer
