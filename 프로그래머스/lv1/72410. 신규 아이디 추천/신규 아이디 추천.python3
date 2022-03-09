@@ -1,0 +1,47 @@
+def solution(new_id):
+    
+    # 1
+    new_id=new_id.lower()
+    new_id = list(new_id)
+    
+    # 2
+    nnew_id = []
+    for i in range(len(new_id)):
+        if new_id[i] in '-_.' or new_id[i].isdecimal() or new_id[i].isalpha():
+            nnew_id.append(new_id[i])
+    new_id = nnew_id[:]
+    # 3
+    nnew_id = []
+    for i in range(len(new_id) - 1):
+        if new_id[i] == '.' and new_id[i+1] == '.':
+            continue
+        else:
+            nnew_id.append(new_id[i])
+    nnew_id.append(new_id[-1])
+    new_id = nnew_id[:]
+    
+    # 4
+    if len(new_id) != 0:
+        if new_id[0] == '.':
+            new_id.pop(0)
+    if len(new_id) != 0:
+        if new_id[-1] == '.':
+            new_id.pop()
+    
+    # 5
+    if len(new_id) == 0:
+        new_id.append('a')
+    
+    # 6
+    if len(new_id) >= 16:
+        while len(new_id) != 15:
+            new_id.pop()
+        if new_id[-1] == '.':
+            new_id.pop()
+            
+    # 7
+    if len(new_id) <= 2:
+        while len(new_id) != 3:
+            new_id.append(new_id[-1])
+    
+    return ''.join(new_id)
