@@ -1,0 +1,12 @@
+def solution(sizes):
+    a = []
+    min_ = 0
+    for i in range(len(sizes)):
+        a.append(sizes[i][0])
+        a.append(sizes[i][1])
+        if sizes[i][0] > sizes[i][1]:
+            sizes[i][0], sizes[i][1] = sizes[i][1], sizes[i][0]
+        if min_ < sizes[i][0]:
+            min_ = sizes[i][0]
+    max1 = max(a)
+    return max1 * min_
