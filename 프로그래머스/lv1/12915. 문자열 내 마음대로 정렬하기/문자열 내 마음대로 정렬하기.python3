@@ -1,0 +1,15 @@
+def solution(strings, n):
+    chk = []
+    answer = []
+    for i in range(len(strings)):
+        chk.append([strings[i][n], strings[i]])
+    for i in range(len(chk)-1, 0, -1):
+        for j in range(i):
+            if chk[j][0] > chk[j+1][0]:
+                chk[j], chk[j+1] = chk[j+1], chk[j]
+            elif chk[j][0] == chk[j+1][0]:
+                if chk[j][1] > chk[j+1][1]:
+                    chk[j][1], chk[j+1][1] = chk[j+1][1], chk[j][1]
+    for i in range(len(chk)):
+        answer.append(chk[i][1])
+    return answer
