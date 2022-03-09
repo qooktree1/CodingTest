@@ -1,0 +1,17 @@
+def solution(n, arr1, arr2):
+    answer = []
+    n1 = []
+    n2 = []
+    for i in range(n):
+        n1.append(bin(arr1[i])[2:])
+        n2.append(bin(arr2[i])[2:])
+        n1[i] = ('0' * (n - len(n1[i]))) + n1[i]
+        n2[i] = ('0' * (n - len(n2[i]))) + n2[i]
+        block = ''
+        for j in range(n):
+            if n1[i][j] == '1' or n2[i][j] == '1':
+                block += '#'
+            elif n1[i][j] == '0' and n2[i][j] == '0':
+                block += ' '
+        answer.append(block)
+    return answer
