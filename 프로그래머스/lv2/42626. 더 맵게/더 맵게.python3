@@ -1,0 +1,39 @@
+import heapq
+def solution(scoville, K):
+    heapq.heapify(scoville)
+    cnt = 0
+    while len(scoville) >= 2:
+        if scoville[0] >= K:
+            return cnt
+        a = heapq.heappop(scoville)
+        b = heapq.heappop(scoville)
+        scoville.append(a + b * 2)
+        cnt += 1
+    if scoville[0] >= K:
+        return cnt
+    return -1
+"""
+def sort2(lst):
+    for i in range(2):
+        for j in range(i, len(lst)):
+            if lst[i] > lst[j]:
+                lst[i], lst[j] = lst[j], lst[i]
+    return lst
+
+
+
+def solution(scoville, K):
+    cnt = 0
+    while len(scoville) >= 2:
+        sort2(scoville)
+        if scoville[0] >= K:
+            return cnt
+        
+        a = scoville.pop(0)
+        b = scoville.pop(0)
+        scoville.append(a + b * 2)
+        cnt += 1
+    if scoville[0] >= K:
+        return cnt
+    return -1
+"""
