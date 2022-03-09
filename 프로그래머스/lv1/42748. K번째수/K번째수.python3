@@ -1,0 +1,9 @@
+def solution(array, commands):
+    
+    answer = []
+    sor=[]
+    for i in commands:
+        
+        sor=sorted(array[i[0]-1:i[1]])
+        answer.append(sor[i[2]-1])
+    return answer
