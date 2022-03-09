@@ -1,0 +1,14 @@
+def solution(s):
+    stack1 = list(s)
+    stack2 = []
+    while stack1:
+        if len(stack2) == 0:
+            stack2.append(stack1.pop())
+        elif stack1[-1] == stack2[-1]:
+            stack2.pop()
+            stack1.pop()
+        else:
+            stack2.append(stack1.pop())
+    if len(stack2) == 0:
+        return 1
+    return 0
