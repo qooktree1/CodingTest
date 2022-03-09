@@ -1,0 +1,7 @@
+def solution(s):
+    s = list(map(str, s))
+    for i in range(len(s)-1, 0, -1):
+        for j in range(i):
+            if ord(s[j]) < ord(s[j+1]):
+                s[j], s[j+1] = s[j+1], s[j]
+    return ''.join(s)
