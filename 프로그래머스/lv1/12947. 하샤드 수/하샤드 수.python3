@@ -1,0 +1,9 @@
+def solution(x):
+    answer = False
+    a = list(map(int, str(x)))
+    chk = 0
+    for i in range(len(a)):
+        chk += a[i]
+    if x % chk == 0:
+        answer = True
+    return answer
