@@ -1,0 +1,12 @@
+def solution(d, budget):
+    answer = 0
+    k=0
+    d=sorted(d)
+    print(d)
+    for i in d:
+        if(k+i>budget):
+            break
+        else:
+            k+=i
+        answer+=1
+    return answer
