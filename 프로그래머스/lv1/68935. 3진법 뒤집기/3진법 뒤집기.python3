@@ -1,0 +1,16 @@
+def solution(n):
+    
+    answer = ''
+    while n // 3 != 0:
+        answer += str(n % 3)
+        n = n // 3
+    answer += str(n % 3)
+    answer = int(answer)
+    result = 0
+    a_len = len(str(answer))
+    for i in range(a_len):
+        if i == 0:
+            result += answer % 10
+        else: result += (answer % 10) * (3**i)
+        answer //= 10
+    return result
