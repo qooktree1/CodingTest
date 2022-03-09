@@ -1,0 +1,14 @@
+def solution(s, n):
+    result = ''
+    for i in s:
+        if i == ' ':
+            result += i
+        else:
+            if chr(ord(i)+n).isalpha():
+                if 'Z' < chr(ord(i)+n) and i <= 'Z':
+                    result += chr(ord(i)+n-26)
+                else: result += chr(ord(i)+n)
+            else:
+                result += chr(ord(i)+n-26)
+    
+    return result
