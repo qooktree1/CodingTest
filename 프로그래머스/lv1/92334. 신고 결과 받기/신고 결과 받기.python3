@@ -1,0 +1,25 @@
+def solution(id_list, report, k):
+    d = dict()
+    d1 = dict()
+    report = list(set(report))  # 중복 제거
+    new_report = []
+    for i in range(len(id_list)):
+        d[id_list[i]] = 0
+        d1[id_list[i]] = 0
+    for i in range(len(report)):
+        a = report[i].split()
+        new_report.append(a)
+    for i in new_report:
+        d[i[1]] += 1
+    
+    for i in range(len(id_list)):
+        if d[id_list[i]] >= k:
+            for j in new_report:
+                if id_list[i] == j[1]:
+                    d1[j[0]] += 1
+    
+    result = []
+    for value, key in d1.items():
+        result.append(key)
+        
+    return result
