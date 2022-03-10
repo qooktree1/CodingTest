@@ -1,0 +1,6 @@
+def solution(n):
+    origin_n = n
+    while True:
+        n += 1
+        if bin(origin_n).count('1') == bin(n).count('1'):
+            return n
