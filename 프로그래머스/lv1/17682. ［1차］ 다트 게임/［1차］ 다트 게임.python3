@@ -1,0 +1,28 @@
+def solution(dartResult):
+    # 계산기 응용
+    n = ''
+    stack = []
+    for i in dartResult:
+        if i.isdigit():
+            n += i
+        elif i == 'S':
+            n = int(n)
+            stack.append(n)
+            n = ''
+        elif i == 'D':
+            n = int(n) ** 2
+            stack.append(n)
+            n = ''
+        elif i == 'T':
+            n = int(n) ** 3
+            stack.append(n)
+            n = ''
+        elif i == '*':
+            if len(stack) > 1:
+                stack[-1] *= 2
+                stack[-2] *= 2
+            else:
+                stack[-1] *= 2
+        elif i == '#':
+            stack[-1] *= -1
+    return sum(stack)
