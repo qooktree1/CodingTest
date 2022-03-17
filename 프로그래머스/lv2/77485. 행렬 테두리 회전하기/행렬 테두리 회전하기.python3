@@ -1,0 +1,43 @@
+from collections import deque
+def solution(rows, columns, queries):
+    # 배열 만들기
+    matrix = [[0] * columns for _ in range(rows)]
+    c = 1
+    answer = []
+    for i in range(rows):
+        for j in range(columns):
+            matrix[i][j] = c
+            c += 1
+    # 쿼리 받기
+    for i in queries:
+        x1, y1, x2, y2 = i
+        x1 -= 1
+        y1 -= 1
+        x2 -= 1
+        y2 -= 1
+
+        lst = deque([])
+        # 좌상단 matrix[x1][y1]
+        # 우상단 matrix[x1][y2]
+        # 우하단 matrix[x2][y2]
+        # 좌하단 matrix[x2][y1]
+        for i in range(y2 - y1):
+            lst.append(matrix[x1][y1 + i])
+        for i in range(x2 - x1):
+            lst.append(matrix[x1 + i][y2])
+        for i in range(y2 - y1):
+            lst.append(matrix[x2][y2 - i])
+        for i in range(x2 - x1):
+            lst.append(matrix[x2 - i][y1])
+        lst.rotate(1)
+        answer.append(min(lst))
+        for i in range(y2 - y1):
+            matrix[x1][y1 + i] = lst.popleft()
+        for i in range(x2 - x1):
+            matrix[x1 + i][y2] = lst.popleft()
+        for i in range(y2 - y1):
+            matrix[x2][y2 - i] = lst.popleft()
+        for i in range(x2 - x1):
+            matrix[x2 - i][y1] = lst.popleft()
+
+    return answer
