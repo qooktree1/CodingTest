@@ -6,9 +6,11 @@ def solution(id_list, report, k):
     for i in range(len(id_list)):
         d[id_list[i]] = 0
         d1[id_list[i]] = 0
+        
     for i in range(len(report)):
         a = report[i].split()
-        new_report.append(a)
+        new_report.append(a)  # report 2차원 배열에 저장
+        
     for i in new_report:
         d[i[1]] += 1
     
