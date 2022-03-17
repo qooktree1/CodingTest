@@ -4,12 +4,10 @@ def solution(w,h):
     if w < h:  # w : 큰 값, h : 작은 값
         w, h = h, w
         
-    # 서로소일때
-    if math.gcd(w, h) == w * h:
-        ans = w + h - 1
+    
     
     # 한 숫자가 최대공약수일때
-    elif math.gcd(w, h) == w:
+    if math.gcd(w, h) == w:
         ans = w
     else:
         ans = w + h - math.gcd(w, h)
