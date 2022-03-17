@@ -1,5 +1,6 @@
 def solution(n):
     ans = ''
+		# while 문 밑의 if문을 거치지 않기 위해
     if n == 1:
         ans = '1'
     elif n == 2:
@@ -20,6 +21,8 @@ def solution(n):
             elif n % 3 == 2:
                 ans = '2' + ans
                 n //= 3
+
+				# 3 % (3이하의 자연수) 일경우
         if n == 3:
             ans = '4' + ans
         elif n == 2:
@@ -29,3 +32,22 @@ def solution(n):
         
             
     return ans
+"""
+# 시간 초과~~~
+def solution(n):
+    nums = ['1', '2', '4']
+    ans = '1'
+    for i in range(n-1):
+        for j in range(len(str(ans)) - 1, -1, -1):
+            if ans[j] == '4':  # 4 가 나타나면 무조건 1로 바꾼다
+                ans = ans[:j] + '1' + ans[j+1:]
+            else:
+                if ans[j] == '1':  # 1이면 2로 바꿈
+                    ans = ans[:j] + '2' + ans[j+1:]
+                elif ans[j] == '2':  # 2면 4로 바꿈
+                    ans = ans[:j] + '4' + ans[j+1:]
+                break
+        else:  # 안쪽 for문의 else문을 돌지 않으면 앞에 1 추가
+            ans = '1' + ans
+    return ans
+"""
