@@ -1,15 +1,17 @@
 def solution(new_id):
     
-    # 1
+    # 1 대문자를 모두 소문자로
     new_id=new_id.lower()
     new_id = list(new_id)
     
-    # 2
+    # 2 nnew_id에 2단계의 조건을 제외한 문자를 복사
     nnew_id = []
     for i in range(len(new_id)):
         if new_id[i] in '-_.' or new_id[i].isdecimal() or new_id[i].isalpha():
             nnew_id.append(new_id[i])
+            
     new_id = nnew_id[:]
+    
     # 3
     nnew_id = []
     for i in range(len(new_id) - 1):
