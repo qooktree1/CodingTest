@@ -1,0 +1,42 @@
+#def solution(numbers, target):
+ #   return numbers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 방법 1
+# product
+from itertools import product
+
+def solution(numbers, target):
+    numbers_join = [(i, -i) for i in numbers]
+    answer = list(map(sum, product(*numbers_join))).count(target)
+    return answer
