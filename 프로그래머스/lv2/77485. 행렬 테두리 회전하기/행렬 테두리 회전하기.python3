@@ -29,8 +29,11 @@ def solution(rows, columns, queries):
             lst.append(matrix[x2][y2 - i])
         for i in range(x2 - x1):
             lst.append(matrix[x2 - i][y1])
-        lst.rotate(1)
-        answer.append(min(lst))
+            
+        lst.rotate(1)  # lst에 받고 돌리기
+        answer.append(min(lst))  # 가장 작은 값 answer 에 append
+        
+        # 돌아간 값 다시 matrix에 넣기
         for i in range(y2 - y1):
             matrix[x1][y1 + i] = lst.popleft()
         for i in range(x2 - x1):
