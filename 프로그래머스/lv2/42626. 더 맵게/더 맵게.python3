@@ -1,3 +1,4 @@
+# heapq
 import heapq
 def solution(scoville, K):
     heapq.heapify(scoville)
@@ -12,25 +13,18 @@ def solution(scoville, K):
     if scoville[0] >= K:
         return cnt
     return -1
+
 """
-def sort2(lst):
-    for i in range(2):
-        for j in range(i, len(lst)):
-            if lst[i] > lst[j]:
-                lst[i], lst[j] = lst[j], lst[i]
-    return lst
-
-
-
+# 시간초과
 def solution(scoville, K):
     cnt = 0
     while len(scoville) >= 2:
-        sort2(scoville)
-        if scoville[0] >= K:
+        
+        if min(scoville) >= K:
             return cnt
         
-        a = scoville.pop(0)
-        b = scoville.pop(0)
+        a = scoville.pop(scoville.index(min(scoville)))
+        b = scoville.pop(scoville.index(min(scoville)))
         scoville.append(a + b * 2)
         cnt += 1
     if scoville[0] >= K:
