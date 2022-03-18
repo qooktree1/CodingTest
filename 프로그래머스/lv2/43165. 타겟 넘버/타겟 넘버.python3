@@ -1,39 +1,8 @@
-#def solution(numbers, target):
- #   return numbers
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 방법 1
-# product
+"""
+def solution(numbers, target):
+    return numbers
+"""
+# 방법 2 product
 from itertools import product
 
 def solution(numbers, target):
