@@ -1,7 +1,8 @@
-# DFS-재귀
+# 방법-1 DFS(재귀)
 ans = 0
 def solution(numbers, target):
     N = len(numbers)
+    
     def DFS(n, ssum):
         global ans
         if n == N:
@@ -10,10 +11,8 @@ def solution(numbers, target):
             return
         DFS(n + 1, ssum + numbers[n])
         DFS(n + 1, ssum - numbers[n])
-        
     
     DFS(0, 0)
-    
     return ans
 
 
