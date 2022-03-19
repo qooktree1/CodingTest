@@ -1,40 +1,51 @@
-def ran(a,b,c):
-    r1=0
-    r2=0
-    for i in range(len(a)):
-        r1+=abs(a[i]-c[i])+abs(a[i]-c[i])
-        r2+=abs(b[i]-c[i])+abs(b[i]-c[i])
-    if r1<r2: return a
-    elif r1>r2: return b
-    elif r1==r2: return True
+def finger_move(l, r, key):
+    l_len = 0
+    r_len = 0
+    # 거리 구하기
+    l_len = abs(l[0] - key[0]) + abs(l[1] - key[1])
+    r_len = abs(r[0] - key[0]) + abs(r[1] - key[1])
+    if r_len < l_len:  # 오른손 이용
+        return r
+    elif r_len > l_len:  # 왼손 이용
+        return l
+    else:  # 두 엄지손가락의 거리가 같을때
+        return
+
+
 
 def solution(numbers, hand):
     answer = ''
-    # *:[1,1]
-    finger={1:[1,4], 2:[2,4], 3:[3,4], 4:[1,3], 5:[2,3], 6:[3,3], 7:[1,2], 8:[2,2], 9:[3,2],'*':[1,1], 0:[2,1], '#':[3,1]}
-    right_finger=finger['#']
-    left_finger=finger['*']
+    # 키패드 좌표 딕셔너리 생성
+    key_spot = {1: [0, 0], 2: [0, 1], 3: [0, 2], 4: [1, 0], 5: [1, 1], 6: [1, 2], 7: [2, 0], 8: [2, 1], 9: [2, 2], '*': [3, 0], 0: [3, 1], '#': [3, 2]}
     
-    for i in numbers:
-        if i==1 or i==4 or i==7:
-            answer+='L'
-            left_finger=finger[i]
-        elif i==3 or i==6 or i==9:
-            answer+='R'
-            right_finger=finger[i]
-        elif i==2 or i==5 or i==8 or i==0:
-            if ran(left_finger,right_finger,finger[i])==left_finger:
-                answer+='L'
-                left_finger=finger[i]
-            elif ran(left_finger,right_finger,finger[i])==right_finger:
-                answer+='R'
-                right_finger=finger[i]
-            elif ran(left_finger,right_finger,finger[i])==True:
-                if hand=="right":
-                    answer+='R'
-                    right_finger=finger[i]
-                elif hand=="left":
-                    answer+='L'
-                    left_finger=finger[i]
+    # 처음 손 위치
+    l_f = r_f = 0
+    l_f = key_spot['*']
+    r_f = key_spot['#']
+    
+    # L, R 판별
+    for num in numbers:
+        if num == 1 or num == 4 or num == 7:  # 왼손 이용
+            answer += 'L'
+            l_f = key_spot[num]  # 왼손 위치 이동
             
+        elif num == 3 or num == 6 or num == 9:  # 오른손 이용
+            answer += 'R'
+            r_f = key_spot[num]  # 오른손 위치 이동
+            
+        else:
+            if finger_move(l_f, r_f, key_spot[num]) == l_f:  # 왼손 이용
+                l_f = key_spot[num]
+                answer += 'L'
+            elif finger_move(l_f, r_f, key_spot[num]) == r_f:  # 오른손 이용
+                r_f = key_spot[num]
+                answer += 'R'
+            else:
+                if hand == 'left':
+                    l_f = key_spot[num]
+                    answer += 'L'
+                elif hand == 'right':
+                    r_f = key_spot[num]
+                    answer += 'R'
+                
     return answer
