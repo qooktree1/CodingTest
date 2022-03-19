@@ -1,24 +1,37 @@
-"""
+# DFS-재귀
+ans = 0
 def solution(numbers, target):
-    ssum = 0
-    stack = [[0, 0]]
-    while stack:
-        x, y = stack.pop()
-        if x == len(numbers):
-            if target == y:
-                ssum += 1
+    N = len(numbers)
+    def DFS(n, ssum):
+        global ans
+        if n == N:
+            if target == ssum:
+                ans += 1
+            return
+        DFS(n + 1, ssum + numbers[n])
+        DFS(n + 1, ssum - numbers[n])
         
-        stack.append([x + 1, y + numbers[x]])
-        stack.append([x + 1, y - numbers[x]])
-            
-    return ssum
+    
+    DFS(0, 0)
+    
+    return ans
+
+
+
+
+
+
+
 """
-
-
 # 방법-2 product
 from itertools import product
 
 def solution(numbers, target):
-    numbers_join = [(i, -i) for i in numbers]
+    # 해당 인덱스의 음수, 양수 짝을 list로 받음
+    numbers_join = [(i, -i) for i in numbers]  # [(4, -4), (1, -1), (2, -2), (1, -1)]
+    
+    # print(list(product(*numbers_join)))  -> 모든 경우의 수가 나옴
+    # map에 sum이 됩니다.. 신기합니다
     answer = list(map(sum, product(*numbers_join))).count(target)
     return answer
+"""
