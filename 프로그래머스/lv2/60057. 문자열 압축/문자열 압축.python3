@@ -1,35 +1,26 @@
 def solution(s):
-    # 결과를 담을 리스트
-    result = []
+    min_ = 10000
+    # 문자열의 길이가 1일때 
     if len(s) == 1:
         return 1
-    # 문자열 길이의 절반만큼까지 비교할 범위로 설정
-    for i in range(1, (len(s)//2)+1):
-        # 비교를 시작할 문자열
-        start_s = s[0:i]
-        my_s = ''
-        # 비교하는 문자 이후를 새로운 문자열로 할당
-        new_s = s[i:]
-        cnt = 1
-
-        while start_s:
-            # 만약 시작 문자열과 이후의 문자가 같다면 cnt += 1을 해주고, new_s 재할당
-            if new_s[0:i] == start_s:
+    
+    # 문자열의 반까지 단위로 설정
+    for i in range(1, len(s)//2 + 1):
+        result = ''
+        cnt = 1  # 첫 cnt가 올라갈때 2여야하기 때문에 1로 설정
+        for j in range(0,len(s),i):
+            if s[j:j+i] == s[j+i:j+(2*i)]:  # 문자열을 비교
                 cnt += 1
-                new_s = new_s[i:]
-            # 비교 문자열이 같지 않다면 이전까지 같았던 문자열 갯수와 문자열을 my_s에 추가
             else:
-                if cnt != 1:                       # 코드 추가
-                    my_s += str(cnt)               # 코드 추가
-                my_s += start_s
-                cnt = 1 # cnt = 1로 초기화
-                start_s = new_s[0:i] # start_s와 new_s 재할당
-                new_s = new_s[i:]
-        # 문자열에서 1은 빼주기 (1도 다 적혀있으므로)
-        my_word = ''
-        for j in my_s:
-            #if j != '1':
-            my_word += j
-        # 계산한 문자열 길이들을 다 result에 넣고, 이 중 최소값을 결과로 도출 
-        result.append(len(my_word))
-    return min(result)
+                # cnt가 1인 경우 문자열만 추가
+                if cnt == 1:
+                    result += s[j:j+i]
+                else:
+                    # cnt가 1 이상일 경우 앞에 cnt값을 추가
+                    result += str(cnt) + s[j:j+i]
+                    cnt = 1
+                    
+        # 문자열의 길이가 최소일때를 비교
+        if min_ > len(result):
+            min_ = len(result)
+    return min_
