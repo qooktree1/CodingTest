@@ -20,6 +20,10 @@ def calc(chicken_store):
             tmp.append(abs(x[0] - c[0]) + abs(x[1] - c[1]))
         # 가장 최소로 갈 수 있는 거리를 answer 에 더함
         answer += min(tmp)
+
+        # 가지치기
+        if answer >= min_:
+            return 10000
     return answer
 
 
