@@ -1,0 +1,38 @@
+import math
+def solution(fees, records):
+    result = []
+    fee = dict()  # 요금을 정산할 딕셔너리
+    info = dict()  # 전체 탐색할 딕셔너리
+    # 요금 정산할 딕셔너리 생성
+    for record in records:
+        a, num, b = record.split()
+        fee[num] = 0
+    
+    # 요금 계산
+    for record in records:
+        time, num, status = record.split()  # 05:34 5961 IN
+        time = int(time[:2]) * 60 + int(time[-2:])
+        
+        if status == 'IN':
+            info[num] = [status, time]  # {'5961': [334, 'IN']}
+        elif status == 'OUT':
+            time_tmp = time - info[num][1]
+            fee[num] += time_tmp
+            info[num] = [status, time]
+            
+    # 마지막까지 출차(OUT) 하지 않은 차량 시간 계산
+    for key, value in info.items():
+        if value[0] == 'IN':
+            fee[key] += 1439 - value[1]
+            
+    fee = sorted(fee.items())  # [["0000",334],["0148",670],["5961",146]]
+    
+    # 요금 총 계산
+    for i in range(len(fee)):
+        if fee[i][1] <= fees[0]:
+            result.append(fees[1])
+        else:
+            a = fees[1] + math.ceil((fee[i][1] - fees[0]) / fees[2]) * fees[-1]
+            result.append(a)
+    
+    return result
