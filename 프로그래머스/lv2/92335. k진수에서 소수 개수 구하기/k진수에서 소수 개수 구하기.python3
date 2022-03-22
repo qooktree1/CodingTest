@@ -5,19 +5,23 @@ def solution(n, k):
         k_nary += str(n % k)
         n //= k
     k_nary = k_nary[::-1]
+    
+    # 0을 기준으로 숫자들을 배열에 저장
     checks = []
-    lst = k_nary.split('0')
+    lst = k_nary.split('0')  # 0을 기준으로 split
     for i in lst:
-        if i and i != '1':
+        if i and i != '1':  # 1이 아니고 숫자가 있을때
             checks.append(i)
     checks = list(map(int, checks))
     
+    
+    # 소수 판별
     cnt = 0
     for chk in checks:
-        sosu = True
-        for i in range(2, int(chk**(1/2)) + 1):
+        flag = True  # 소수 인지 판별
+        for i in range(2, int(chk**(1/2)) + 1):  # 제곱근까지 검사해도 된다
             if chk % i == 0:
-                sosu = False
-        if sosu:
+                flag = False  # 소수가 아님
+        if flag:  # 소수일때
             cnt += 1
     return cnt
