@@ -1,0 +1,23 @@
+def solution(n, k):
+    k_nary = ''
+    # k 진수 만들기 -> k_nary
+    while n:
+        k_nary += str(n % k)
+        n //= k
+    k_nary = k_nary[::-1]
+    checks = []
+    lst = k_nary.split('0')
+    for i in lst:
+        if i and i != '1':
+            checks.append(i)
+    checks = list(map(int, checks))
+    
+    cnt = 0
+    for chk in checks:
+        sosu = True
+        for i in range(2, int(chk**(1/2)) + 1):
+            if chk % i == 0:
+                sosu = False
+        if sosu:
+            cnt += 1
+    return cnt
