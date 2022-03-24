@@ -1,19 +1,21 @@
 def solution(progresses, speeds):
-    cnt = 0
-    answer = []
+    cnt = 0  # 동시에 끝난 기능들을 count할 변수
+    answer = []  # cnt를 담을 배열
+    
     while True:
-
         for i in range(len(progresses)):
-            progresses[i] += speeds[i]
+            progresses[i] += speeds[i]  # 작업 진도에 작업속도를 더함
 
-        if progresses[0] >= 100:
+        if progresses[0] >= 100:  # 첫번째 기능이 100 이상이면
 
-            while progresses[0] >= 100:
+            while progresses[0] >= 100:  # 0번째 index가 100 미만일때까지 speeds와 같이 pop
                 progresses.pop(0)
                 speeds.pop(0)
-                cnt += 1
-                if len(progresses) == 0:
+                cnt += 1  # 기능이 동시 몇번 pop 됐는지 count
+                
+                if len(progresses) == 0:  # 만약 작업이 없으면
                     answer.append(cnt)
                     return answer
-            answer.append(cnt)
-            cnt = 0
+                
+            answer.append(cnt)  # 동시에 몇번했는지 answer에 append
+            cnt = 0  # 초기화
