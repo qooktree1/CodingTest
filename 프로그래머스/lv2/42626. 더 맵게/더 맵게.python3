@@ -1,4 +1,5 @@
 # heapq
+# push, pop 시 자동 정렬한다고 함
 import heapq
 def solution(scoville, K):
     heapq.heapify(scoville)
@@ -8,25 +9,39 @@ def solution(scoville, K):
             return cnt
         a = heapq.heappop(scoville)
         b = heapq.heappop(scoville)
-        scoville.append(a + b * 2)
+        heapq.heappush(scoville, a + b * 2)
         cnt += 1
     if scoville[0] >= K:
         return cnt
     return -1
-
 """
 # 시간초과
+from collections import deque
 def solution(scoville, K):
     cnt = 0
+    scoville.sort()
+    scoville = deque(scoville)
+    
     while len(scoville) >= 2:
         
-        if min(scoville) >= K:
+        if scoville[0] >= K:
             return cnt
         
-        a = scoville.pop(scoville.index(min(scoville)))
-        b = scoville.pop(scoville.index(min(scoville)))
-        scoville.append(a + b * 2)
+        a = scoville.popleft()
+        b = scoville.popleft()
+        c = a + b * 2
+        scoville.append(c)
         cnt += 1
+        
+        j = -1
+        for i in range(len(scoville)-2, -1, -1):
+            if scoville[j] < scoville[i]:
+                scoville[j], scoville[i] = scoville[i], scoville[j]
+                j -= 1
+            else:
+                break
+        
+        
     if scoville[0] >= K:
         return cnt
     return -1
