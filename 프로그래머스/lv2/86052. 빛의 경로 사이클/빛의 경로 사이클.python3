@@ -1,0 +1,39 @@
+# 상우하좌
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+
+def DFS(x, y, d, visited, grid):
+        N = len(grid)
+        M = len(grid[0])
+        cnt = 0
+        
+        while True:
+            if visited[x][y][d] == 1:
+                return cnt
+            
+            visited[x][y][d] = 1
+            x = (x + dx[d]) % N
+            y = (y + dy[d]) % M
+            
+            if grid[x][y] == 'R':
+                d = (d + 1) % 4
+            elif grid[x][y] == 'L':
+                d = (d - 1) % 4
+            
+            cnt += 1
+
+
+def solution(grid):
+    answer = []
+    N = len(grid)
+    M = len(grid[0])
+    visited = [[[0] * 4 for _ in range(M)] for _ in range(N)]
+    
+    for i in range(N):
+        for j in range(M):
+            for d in range(4):
+                if not visited[i][j][d]:
+                    answer.append(DFS(i, j, d, visited, grid))
+    answer.sort()
+    return answer
