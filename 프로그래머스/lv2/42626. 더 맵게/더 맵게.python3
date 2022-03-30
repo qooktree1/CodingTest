@@ -2,7 +2,7 @@
 # push, pop 시 자동 정렬한다고 함
 import heapq
 def solution(scoville, K):
-    heapq.heapify(scoville)
+    heapq.heapify(scoville)  # 리스트를 힙으로 만듦(오름차순 정렬)
     cnt = 0
     while len(scoville) >= 2:
         if scoville[0] >= K:
@@ -40,8 +40,6 @@ def solution(scoville, K):
                 j -= 1
             else:
                 break
-        
-        
     if scoville[0] >= K:
         return cnt
     return -1
