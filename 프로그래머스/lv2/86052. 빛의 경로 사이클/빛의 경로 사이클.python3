@@ -4,6 +4,7 @@ dy = [0, 1, 0, -1]
 
 
 def DFS(x, y, d, visited, grid):
+        
         N = len(grid)  # 행
         M = len(grid[0])  # 열
         cnt = 0
@@ -27,10 +28,11 @@ def solution(grid):
     answer = []
     N = len(grid)  # 행
     M = len(grid[0])  # 열
+    # S, L, R 하나당 방향 배열 [0] * 4 를 가짐
     visited = [[[0] * 4 for _ in range(M)] for _ in range(N)]
     for i in range(N):
         for j in range(M):
-            for d in range(4):
+            for d in range(4):  # 모든 방향으로
                 if not visited[i][j][d]:
                     answer.append(DFS(i, j, d, visited, grid))
     answer.sort()
