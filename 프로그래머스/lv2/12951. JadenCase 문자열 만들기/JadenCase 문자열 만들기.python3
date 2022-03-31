@@ -1,0 +1,10 @@
+def solution(s):
+    answer = ''
+    for c in s:
+        if answer == '' and c.isalpha():
+            answer += c.upper()
+        elif c.isalpha() and answer[-1] == ' ':
+            answer += c.upper()
+        else:
+            answer += c.lower()
+    return answer
