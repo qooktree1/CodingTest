@@ -1,0 +1,17 @@
+from itertools import combinations
+from collections import Counter
+def solution(orders, course):
+    result = []
+    
+    for c in course:
+        line = []
+        for order in orders:
+            line.extend(list(map(''.join, combinations(sorted(order), c))))
+        
+        chk = Counter(line)
+        if len(chk) and max(chk.values()) >= 2:
+            for c in chk:
+                if chk[c] == max(chk.values()):
+                    result.append(c)
+    result.sort()
+    return result
