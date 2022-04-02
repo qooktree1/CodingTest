@@ -1,0 +1,35 @@
+total = set()
+
+
+def is_prime(x):
+    if x == 0 or x == 1:
+        return False
+    for n in range(2, int(x ** 0.5) + 1):
+        if x % n == 0:
+            return False
+    return True
+
+
+def dfs(n, N, numbers, tmp, visited):
+    global total
+    if N == n:
+        if is_prime(int(tmp)):
+            total.add(int(tmp))
+        return
+    
+    # 빈 문자열 아니면 모든 수들의 조합을 total 에 add
+    if tmp and is_prime(int(tmp)):
+        total.add(int(tmp))
+        
+    for i in range(N):
+        if not visited[i]:
+            visited[i] = 1
+            dfs(n + 1, N, numbers, tmp + numbers[i], visited)
+            visited[i] = 0
+
+def solution(numbers):
+    global total
+    N = len(numbers)
+    visited = [0] * N
+    dfs(0, N, numbers, '', visited)
+    return len(total)
