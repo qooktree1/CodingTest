@@ -1,9 +1,6 @@
 def solution(array, commands):
-    
     answer = []
-    sor=[]
     for i in commands:
-        
-        sor=sorted(array[i[0]-1:i[1]])
-        answer.append(sor[i[2]-1])
+        sliced=sorted(array[i[0]-1:i[1]])  # 자르고 정렬
+        answer.append(sliced[i[2]-1])  # 숫자 출력
     return answer
