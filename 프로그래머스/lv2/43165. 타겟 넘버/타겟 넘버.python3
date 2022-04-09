@@ -15,11 +15,6 @@ def solution(numbers, target):
     DFS(0, 0)
     return ans
 
-
-
-
-
-
 """
 # 방법-2 product
 from itertools import product
