@@ -1,0 +1,29 @@
+"""
+i는 첫번째 index, j는 두번째 index
+0[0, 0], 1[0, 1], 2[0, 2], 3[1, 0], 4[1, 1], 5[1, 2], 6[2, 0], 7[2, 1], 8[2, 2]
+change to
+0[0, 0], 1[0, 1], 2[0, 2], 1[1, 0], 1[1, 1], 2[1, 2], 2[2, 0], 2[2, 1], 2[2, 2]
+로 변함
+-> (i // 값) 와 (j % 값) 를 비교하여 max값을 가짐
+"""
+def solution(n, left, right):
+    answer = []
+    for i in range(left, right + 1):
+        if i // n > i % n:
+            answer.append(i // n + 1)
+        else:
+            answer.append(i % n + 1)
+    return answer
+"""
+# n이 엄청 크기 때문에 이런식이면 시간초과
+def solution(n, left, right):
+    answer = []
+    k = 0
+    for i in range(n):
+        for j in range(n):
+            if left <= k <= right:
+                answer.append(max(i, j) + 1)
+            k += 1
+            if k > right:
+                return answer
+"""
