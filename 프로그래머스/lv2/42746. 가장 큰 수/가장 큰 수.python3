@@ -1,0 +1,12 @@
+# DFS 로 시간이 너무 걸림 - numbers 길이를 읽어보자!!!
+def solution(numbers):
+    for i in range(len(numbers)):
+        numbers[i] = [numbers[i], [str(numbers[i]) * 3]]
+    
+    numbers.sort(key=lambda x : x[1][0:3], reverse=True)
+    answer = ''
+    for i in range(len(numbers)):
+        answer += str(numbers[i][0])
+    if int(answer) == 0:
+        return '0'
+    return answer
