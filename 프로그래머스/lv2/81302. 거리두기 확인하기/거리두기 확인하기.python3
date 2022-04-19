@@ -1,0 +1,47 @@
+from collections import deque
+# 상하좌우
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+
+
+def bfs(place, index):
+    visited = [[0] * 5 for _ in range(5)]
+    distance = [[0] * 5 for _ in range(5)]
+    sx, sy = index
+    cnt = 0
+    q = deque([[sx, sy]])
+    
+    while q:
+        x, y = q.popleft()
+        visited[x][y] = 1
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if 0 <= nx < 5 and 0 <= ny < 5 and not visited[nx][ny]:
+                if place[nx][ny] == 'O':
+                    q.append([nx, ny])
+                    distance[nx][ny] = distance[x][y] + 1
+                
+                if place[nx][ny] == 'P' and distance[x][y] <= 1:
+                    return 0
+    return 1
+
+def solution(places):
+    ans = []
+    
+    # 각 대기실 별로
+    for place in places:
+        temp = []
+        for i in range(5):
+            for j in range(5):
+                if place[i][j] == 'P':
+                    temp.append([i, j])
+                    
+        for tmp in temp:
+            if not bfs(place, tmp):
+                ans.append(0)
+                break
+        else:
+            ans.append(1)
+
+    return ans
