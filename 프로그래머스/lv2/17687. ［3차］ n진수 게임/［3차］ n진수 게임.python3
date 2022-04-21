@@ -1,0 +1,29 @@
+# 10진수 n 진수로 변환  -> convert(10진수, n진법)
+tmp = '0123456789ABCDEF'
+def convert(num, base) :
+    q, r = divmod(num, base)
+    if q == 0 :
+        return tmp[r] 
+    else :
+        return convert(q, base) + tmp[r]
+
+# n : 진법, t : 미리 구할 숫자의 갯수, m : 게임에 참가하는 인원, p : 튜브의 순서
+def solution(n, t, m, p):
+    number = 0  # 숫자
+    answer = ''
+    turn = 1  # 차례
+    while len(answer) != t:  # 구할 숫자의 개수와 기댓값의 길이가 같을때까지
+        temp = convert(number, n)
+        for tmp in temp:
+            if turn % m == p and m != p:
+                answer += tmp
+            if turn % m == 0 and m == p:
+                answer += tmp
+            
+            if len(answer) == t:
+                return answer
+            turn += 1
+            
+        number += 1
+        
+    return answer
