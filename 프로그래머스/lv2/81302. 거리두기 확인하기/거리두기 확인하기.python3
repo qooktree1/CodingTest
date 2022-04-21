@@ -5,8 +5,8 @@ dy = [0, 0, -1, 1]
 
 
 def bfs(place, index):
-    visited = [[0] * 5 for _ in range(5)]
-    distance = [[0] * 5 for _ in range(5)]
+    visited = [[0] * 5 for _ in range(5)]  # 방문 표시
+    distance = [[0] * 5 for _ in range(5)]  # 거리 표시
     sx, sy = index
     cnt = 0
     q = deque([[sx, sy]])
@@ -36,11 +36,13 @@ def solution(places):
             for j in range(5):
                 if place[i][j] == 'P':
                     temp.append([i, j])
-                    
+        
+        # P를 시작점으로 bfs
         for tmp in temp:
-            if not bfs(place, tmp):
+            if not bfs(place, tmp):  # 한명이라도 지키ㅣ 않았으면 0을 추가한 후 다음 대기실로 이동
                 ans.append(0)
                 break
+        # if문에 걸리지 않았으면 모두 거리두기를 지켰으므로 1 추가
         else:
             ans.append(1)
 
