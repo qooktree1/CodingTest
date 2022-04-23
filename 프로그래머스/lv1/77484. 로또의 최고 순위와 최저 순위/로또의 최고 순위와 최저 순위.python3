@@ -1,4 +1,36 @@
 def solution(lottos, win_nums):
+    answer = []
+    max_rank = min_rank = 0
+    
+    # 최저 순위 구하기
+    tmp = len(set(lottos) & set(win_nums))
+    if 7 - tmp == 7:
+        min_rank = 6
+    else:
+        min_rank = 7 - tmp
+        
+    
+    # 최고 순위 구하기
+    tmp2 = lottos.count(0)
+    tmp2 += tmp
+    
+    if tmp2 == 6:
+        max_rank = 1
+    elif tmp2 == 5:
+        max_rank = 2
+    elif tmp2 == 4:
+        max_rank = 3
+    elif tmp2 == 3:
+        max_rank = 4
+    elif tmp2 == 2:
+        max_rank = 5
+    else:
+        max_rank = 6
+    answer.append(max_rank)
+    answer.append(min_rank)
+    return answer
+"""
+def solution(lottos, win_nums):
     answer=[]
     lotto2=len(set(lottos) & set(win_nums))
     lotto1 = lotto2 + len([x for x in lottos if x ==0])
@@ -9,10 +41,11 @@ def solution(lottos, win_nums):
     lotto1=7-b
     lotto2=7-a
     
-    if len(set(lottos)&set(win_nums))==0:
+    if len(set(lottos) & set(win_nums))==0:
         lotto1=6
         if len([x for x in lottos if x ==0])==0:
             lotto2=6
     answer.append(lotto2)
     answer.append(lotto1)
     return answer
+"""
