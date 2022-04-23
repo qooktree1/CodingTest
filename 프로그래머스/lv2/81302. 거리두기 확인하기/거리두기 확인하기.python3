@@ -39,7 +39,7 @@ def solution(places):
         
         # P를 시작점으로 bfs
         for tmp in temp:
-            if not bfs(place, tmp):  # 한명이라도 지키ㅣ 않았으면 0을 추가한 후 다음 대기실로 이동
+            if not bfs(place, tmp):  # 한명이라도 지키지 않았으면 0을 추가한 후 다음 대기실로 이동
                 ans.append(0)
                 break
         # if문에 걸리지 않았으면 모두 거리두기를 지켰으므로 1 추가
