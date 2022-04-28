@@ -1,0 +1,39 @@
+def solution(m, n, board):
+    answer = 0
+    for i in range(len(board)):
+        board[i] = list(board[i])
+        
+    while True:
+        check = [[0] * n for _ in range(m)]
+        
+        for i in range(m-1):
+            for j in range(n-1):
+                if board[i][j] and board[i][j] == board[i+1][j+1] == board[i+1][j] == board[i][j+1]:
+                    check[i][j] = check[i][j+1] = check[i+1][j] = check[i+1][j+1] = 1
+        
+        
+        # 지워진 블록 세기
+        cnt = 0
+        for i in range(m):
+            for j in range(n):
+                if check[i][j]:
+                    cnt += 1
+        
+        if cnt == 0:  # 종료 조건 - 지워진 블록이 없으면
+            return answer
+        answer += cnt
+        
+        #지워진 블록에 블록 채우기
+        for i in range(m-1, -1, -1):
+            for j in range(n):
+                if check[i][j] == 1:
+                    x = i-1
+                    while x >= 0 and check[x][j] == 1:
+                        x -= 1
+                        
+                    if x < 0:
+                        board[i][j] = 0
+                    else:
+                        board[i][j] = board[x][j]
+                        check[x][j] = 1
+    return answer
