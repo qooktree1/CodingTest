@@ -1,0 +1,68 @@
+from itertools import permutations
+
+# 계산식 만들기
+def make_formula(expression):
+    formula = []
+    op = []
+    number = ''
+    for c in expression:
+        if c.isnumeric():
+            number += c
+        else:
+            formula.append(int(number))
+            op.append(c)
+            formula.append(c)
+            number = ''
+    formula.append(number)
+
+    return formula, list(set(op))
+
+
+# 어떤 연산인지 구분
+def what_operate(n1, n2, op):
+    n1 = int(n1)
+    n2 = int(n2)
+    if op == '+':
+        return n1 + n2
+    elif op == '-':
+        return n1 - n2
+    elif op == '*':
+        return n1 * n2
+
+
+# 계산하기
+def calculator(formula, op):
+    tmp = formula[:]  # 복사
+    i = 0
+    idx = 0
+    while True:
+        # 종료 조건
+        if '-' not in tmp and '+' not in tmp and '*' not in tmp:
+            return abs(tmp[0])
+
+        # 현재 연산자가 expression에 없으면
+        if op[i] not in tmp:
+            i += 1  # 다음 연산자로 가기 위한 index
+            idx = 0
+            continue
+
+        # 현재 연산자와 검색 결과가 같다면
+        elif tmp[idx] == op[i]:
+            tmp[idx - 1] = what_operate(tmp[idx - 1], tmp[idx + 1], op[i])
+            tmp.pop(idx)
+            tmp.pop(idx)
+            continue
+
+        idx += 1  # expression 인덱스
+
+
+def solution(expression):
+    formula, op = make_formula(expression)
+    operator = list(permutations(op, len(op)))
+
+    # 각 우선순위를 적용할때마다 나오는 값을 구하자
+    # i = ('*', '-', '+'), ...
+    result = []
+    for oper in operator:
+        result.append(calculator(formula, oper))
+    return max(result)
