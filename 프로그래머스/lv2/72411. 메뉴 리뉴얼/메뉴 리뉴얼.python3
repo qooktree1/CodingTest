@@ -1,17 +1,23 @@
 from itertools import combinations
-from collections import Counter
 def solution(orders, course):
     result = []
-    
+    # 요리의 개수마다 조합을 만듦
     for c in course:
         line = []
         for order in orders:
-            line.extend(list(map(''.join, combinations(sorted(order), c))))  # XY == YX 따라서 정렬
-        # line = ['ABCF', 'ABCG', 'ABFG', 'ACFG', 'BCFG', 'ACDE', 'BCFG', 'ACDE', 'ACDH', 'ACEH', 'ADEH', 'CDEH'] ...
-        chk = Counter(line)
-        if len(chk) and max(chk.values()) >= 2:  # 배열이 존재하고 단품메뉴를 2개 이상 주문시
-            for c in chk:
-                if chk[c] == max(chk.values()):
-                    result.append(c)
+            # XY == YX 따라서 정렬
+            line.extend(list(map(''.join, combinations(sorted(order), c))))
+
+        counts = dict()
+        for k in range(len(line)):
+            if line[k] not in counts:
+                counts[line[k]] = 1
+            else:
+                counts[line[k]] += 1
+
+        for key, value in counts.items():
+            if value >= 2 and max(counts.values()) == value:
+                result.append(key)
+
     result.sort()
     return result
