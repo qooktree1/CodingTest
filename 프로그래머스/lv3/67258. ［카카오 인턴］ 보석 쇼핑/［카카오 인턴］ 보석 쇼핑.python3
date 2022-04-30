@@ -1,0 +1,85 @@
+# 투포인터 방법
+def solution(gems):
+    N = len(gems)
+    answer = []
+    kinds = len(set(gems))  # 보석종류 수
+    s = e = 0
+    gem_dict = dict()
+    gem_range = len(gems) + 1
+    
+    while e < N:  # 끝점이 범위 안에 있을 시
+        
+        # 새로 발견할 보석일 시 딕셔너리에 추가
+        if gems[e] not in gem_dict:
+            gem_dict[gems[e]] = 1
+        # 기존에 있던 보석일 시 +1
+        else:
+            gem_dict[gems[e]] += 1
+        
+        e += 1  # 보석 추가 -> end 한칸 뒤로
+        
+        # 모든 보석 존재 시
+        if len(gem_dict) == kinds:
+            while s < e:
+                # 현재 보석이 하나 이상 존재할 시
+                if gem_dict[gems[s]] > 1:
+                    gem_dict[gems[s]] -= 1  # 하나 제거
+                    s += 1  # start point 이동
+                
+                # 지정한 구간보다 현재 구간이 짧을 시
+                elif (e-s) < gem_range:
+                    gem_range = e - s  # 가장 짧은 구간을 찾아야하기 때문
+                    answer = [s+1, e]
+                    break
+                else:
+                    break
+
+    return answer
+
+"""
+# 방법 2. two-pointer algorithm - 시간초과 : sorted, set 남발해서 그런 것 같음 & slicing으로 접근하면 안될 듯
+def solution(gems):
+    set_gems = list(set(gems))
+    st = end = 0
+    points = [0, 0]
+    min_ = float('inf')
+    
+    while end < len(gems)+1:
+        if sorted(list(set(gems[st:end]))) == sorted(set_gems):
+            if end - (st+1) < min_:
+                min_ = end - (st + 1)
+                points = [st+1, end]
+            elif end - (st+1) == min_:
+                if points[0] > st+1:
+                    points = [st+1, end]
+
+            st += 1
+        else:
+            end += 1
+     
+    # 모든 원소를 가져야 할때
+    if points == [0, 0]:
+        return [1, len(gems)]
+            
+    return points
+"""
+
+"""
+# 방법 1. 2중 for문 해결 불가 - 시간초과
+def solution(gems):
+    st = end = 0
+    origin_len = len(set(gems))
+    min_len = float('inf')
+    tmp = sorted(list(set(gems)))
+    
+    for i in range(len(gems)):
+        compare_tmp = []
+        for j in range(i, len(gems)):
+            compare_tmp.append(gems[j])
+            if tmp == sorted(list(set(compare_tmp))):
+                if min_len > len(compare_tmp):
+                    min_len = len(compare_tmp)
+                    st = i
+                    end = j
+    return [st+1, end+1]
+"""
