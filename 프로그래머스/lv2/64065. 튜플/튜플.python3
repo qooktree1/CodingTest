@@ -1,0 +1,27 @@
+def solution(s):
+    # 배열로 만들기
+    tmp = ''
+    tmp_lst = []
+    numbers = []
+    for c in s:
+        if c.isnumeric():
+            tmp += c
+        elif c == ',':
+            if tmp != '':
+                tmp_lst.append(int(tmp))
+            tmp = ''
+        elif c == '}':
+            if tmp != '':
+                tmp_lst.append(int(tmp))
+                tmp = ''
+                numbers.append(tmp_lst)
+            tmp_lst = []
+            
+    # numbers 이차원 배열에 조합
+    numbers.sort(key=lambda x:len(x))
+    ans = []
+    for i in range(len(numbers)):
+        for j in range(len(numbers[i])):
+            if numbers[i][j] not in ans:
+                ans.append(numbers[i][j])
+    return ans
