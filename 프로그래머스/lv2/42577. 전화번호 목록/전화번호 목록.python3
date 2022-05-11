@@ -1,6 +1,8 @@
 def solution(phone_book):
-    phone_book.sort()
+    phone_book.sort()  # 오름차순 정렬 -> 길이가 가장 짧은 게 앞으로
     for i in range(len(phone_book) - 1):
+        # 현재 전화번호가 다음 전화번호의 접두어 일시 False return
+        # [:len(phone_book[i])] -> 다음 전화번호 중 현재 전화번호 길이만큼 비교
         if phone_book[i] == phone_book[i+1][:len(phone_book[i])]:
             return False
             
