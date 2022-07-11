@@ -1,25 +1,25 @@
 import sys
-sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
 def dfs(x):
-    for i in tree[x]:
-        if not parent[i]:
-            parent[i] = x
-            dfs(i)
+    stack = [x]
+    while stack:
+        x = stack.pop()
+        for n_x in graph[x]:
+            if not visited[n_x]:
+                # 방문 표시에 들어갈 숫자를 부모 숫자로
+                visited[n_x] = x
+                stack.append(n_x)
 
 
 N = int(input())
-tree = [[] for _ in range(N+1)]
-parent = [0] * (N+1)
-for _ in range(1, N):
+graph = [[] for _ in range(N+1)]
+visited = [0] * (N+1)
+for _ in range(N-1):
     a, b = map(int, input().split())
-    tree[a].append(b)
-    tree[b].append(a)
-ans = []
-# tree = [[], [6, 4], [4], [6, 5], [1, 2, 7], [3], [1, 3], [4]]
+    graph[a].append(b)
+    graph[b].append(a)
 
 dfs(1)
-
-for n in range(2, N+1):
-    print(parent[n])
+for ans in visited[2:]:
+    print(ans)
