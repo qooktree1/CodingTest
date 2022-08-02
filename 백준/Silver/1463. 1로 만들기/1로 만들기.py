@@ -1,12 +1,15 @@
+import sys
+input = sys.stdin.readline
+
+
 def dfs(x, cnt):
-    global ans
     if x == 1:
-        if cnt < ans:
-            ans = cnt
-        return
-    
+        global ans
+        ans = min(cnt, ans)
+        return ans
+
     # 가지치기
-    if cnt >= ans:
+    if ans <= cnt:
         return
 
     if x % 3 == 0:
@@ -15,8 +18,7 @@ def dfs(x, cnt):
         dfs(x / 2, cnt + 1)
     dfs(x - 1, cnt + 1)
 
-
-N = int(input())
-ans = float('inf')
-dfs(N, 0)
+X = int(input())
+ans = 10 ** 6
+dfs(X, 0)
 print(ans)
