@@ -1,10 +1,10 @@
 # [level 1] 핸드폰 번호 가리기 - 12948 
 
-[문제 링크](https://programmers.co.kr/learn/courses/30/lessons/12948?language=python3) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12948?language=javascript) 
 
 ### 성능 요약
 
-메모리: 10.2 MB, 시간: 0.00 ms
+메모리: 30 MB, 시간: 0.10 ms
 
 ### 구분
 
@@ -22,7 +22,7 @@
 <h5>제한 조건</h5>
 
 <ul>
-<li>s는 길이 4 이상,  20이하인 문자열입니다.</li>
+<li>phone_number는 길이 4 이상,  20이하인 문자열입니다.</li>
 </ul>
 
 <h5>입출력 예</h5>
