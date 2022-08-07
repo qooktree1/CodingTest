@@ -1,16 +1,21 @@
+import sys
+input = sys.stdin.readline
+
 n = int(input())
-lst = []
-for i in range(n):
-    lst.append(list(map(int, input().split())))
+tri = []
+for _ in range(n):
+    tri.append(list(map(int, input().split())))
 
 for i in range(1, n):
-    for j in range(len(lst[i])):
+
+    for j in range(len(tri[i])):
+        # 맨 왼쪽 대각선
         if j == 0:
-            lst[i][j] += lst[i-1][j]
+            tri[i][j] += tri[i-1][j]
 
-        elif i == j:
-            lst[i][j] += lst[i-1][j-1]
-
+        # 맨 오른쪽 대각선
+        elif j == i:
+            tri[i][j] += tri[i-1][j-1]
         else:
-            lst[i][j] += max(lst[i-1][j], lst[i-1][j-1])
-print(max(lst[-1]))
+            tri[i][j] += max(tri[i-1][j-1], tri[i-1][j])
+print(max(tri[-1]))
