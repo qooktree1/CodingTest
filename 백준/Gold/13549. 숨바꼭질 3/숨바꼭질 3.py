@@ -11,14 +11,15 @@ while q:
         print(time)
         break
 
+    # 현재
     if 0 <= x * 2 <= 100000 and time < visited[x * 2]:
         visited[x * 2] = time
         heapq.heappush(q, [time, x * 2])
 
-    if 0 <= x + 1 <= 100000 and time + 1 < visited[x + 1]:
-        visited[x + 1] = time + 1
+    if 0 <= x + 1 <= 100000 and time < visited[x + 1]:
+        visited[x + 1] = time
         heapq.heappush(q, [time + 1, x + 1])
 
-    if 0 <= x - 1 <= 100000 and time + 1 < visited[x - 1]:
-        visited[x - 1] = time + 1
+    if 0 <= x - 1 <= 100000 and time < visited[x - 1]:
+        visited[x - 1] = time
         heapq.heappush(q, [time + 1, x - 1])
