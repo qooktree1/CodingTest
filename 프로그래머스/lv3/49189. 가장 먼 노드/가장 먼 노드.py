@@ -1,16 +1,15 @@
 from collections import deque
 
-def bfs(x, graph, distance, visited):
-    q = deque([x])
-    visited[x] = 1  # 1번 노드 방문
+
+def bfs(node, graph, distance):
+    q = deque()
+    q.append(node)
     while q:
         x = q.popleft()
         for n_x in graph[x]:
-            if not visited[n_x]:
-                visited[n_x] = 1  # 노드 방문
+            if not distance[n_x]:
                 q.append(n_x)
                 distance[n_x] = distance[x] + 1
-
     return distance
 
 def solution(n, edge):
@@ -19,12 +18,10 @@ def solution(n, edge):
     for a, b in edge:
         graph[a].append(b)
         graph[b].append(a)
-
-    # visited: 방문 표시, distance: 거리 표시
-    visited = [0] * (n + 1)
-    distance = [0] * (n + 1)
-    distance = bfs(1, graph, distance, visited)
     
-    print(distance)
-    # 최대 거리의 개수를 구하기
-    return distance.count(max(distance))
+    # distance: 거리 표시
+    distance = [0] * (n+1)
+    
+    result = bfs(1, graph, distance)
+    max_distance = max(result)
+    return result[2:].count(max_distance)
