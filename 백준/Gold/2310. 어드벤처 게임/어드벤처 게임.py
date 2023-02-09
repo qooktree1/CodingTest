@@ -32,7 +32,8 @@ while 1:
     visited = [0] * (N+1)
     for _ in range(N):
         room = input().split()
-        rooms.append([room[0], int(room[1]), list(map(int, room[2:-1]))])
+        rooms.append([room[0], int(room[1]), list(
+            map(int, room[2:-1]))])  # 각 줄은 0으로 끝남
 
     dfs(0, 0)  # 방번호, 소지금
     print(answer)
