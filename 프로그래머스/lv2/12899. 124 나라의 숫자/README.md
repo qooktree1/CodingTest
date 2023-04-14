@@ -1,10 +1,10 @@
 # [level 2] 124 나라의 숫자 - 12899 
 
-[문제 링크](https://programmers.co.kr/learn/courses/30/lessons/12899?language=python3) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12899?language=javascript) 
 
 ### 성능 요약
 
-메모리: 10.3 MB, 시간: 0.02 ms
+메모리: 33.3 MB, 시간: 0.05 ms
 
 ### 구분
 
@@ -12,7 +12,7 @@
 
 ### 채점결과
 
-<br/>정확성: 70.0<br/>효율성: 30.0<br/>합계: 100.0 / 100.0
+Empty
 
 ### 문제 설명
 
@@ -69,7 +69,7 @@
 <h5>제한사항</h5>
 
 <ul>
-<li>n은 500,000,000이하의 자연수 입니다.</li>
+<li>n은 50,000,000이하의 자연수 입니다.</li>
 </ul>
 
 <hr>
@@ -99,5 +99,9 @@
 </tr>
 </tbody>
       </table>
+<hr>
+
+<p>※ 공지 - 2022년 9월 5일 제한사항이 수정되었습니다.</p>
+
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
