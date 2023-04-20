@@ -6,7 +6,9 @@ function solution(n) {
     let answer = ""
     if (n < 3) return n.toString()
     else if (n === 3) return "4"
-    while (n > 3){
+    
+    
+    while (n > 0){
         if (n % 3 === 0){
             answer = "4" + answer
             n = parseInt(n / 3) - 1
@@ -20,10 +22,7 @@ function solution(n) {
             n = parseInt(n / 3)
         }
     }
-    
-    if (n % 3 === 1) answer = "1" + answer
-    else if (n % 3 === 2) answer = "2" + answer
-    else if (n % 3 === 0) answer = "4" + answer
+
     
     return answer
 }
