@@ -1,5 +1,5 @@
 // 문제: [3차] 방금그곡
-// 시간: 67분
+// 시간: 87분
 // 알고리즘: replace
 
 
@@ -20,9 +20,10 @@ const solution = (m, musicinfos) => {
         const mok = Math.floor(time / stream.length)
         const namoji = time % stream.length
         for (let i=0; i<mok; i++) stream += streamTmp
+        
         if (mok !== 0) stream = stream + streamTmp.slice(0, namoji)
         else stream = streamTmp.slice(0, namoji)
-        
+
         // 포함되어있는지 확인
         if (stream.includes(m) !== false){
             
