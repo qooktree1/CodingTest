@@ -24,7 +24,7 @@ const solution = s => {
                 if (s[i+index2+1] === s[i-index2]) index2++
                 else break
             }
-            ans = Math.max(ans, (index2-1) *2 + 2)
+            ans = Math.max(ans, index2 *2)
         }
         
         
