@@ -14,15 +14,13 @@ const solution = cards => {
         }
         else {
             ans.push(ssum.length)
+            console.log(ssum)
             return
         }
     }
     
-    while (true){
-        if (visited.filter(x => x === false).length === 0) break
-        for (let i=0; i<cards.length; i++){
-            if (!visited[i]) dfs(cards[i], cards, visited, [])
-        }
+    for (let i=0; i<cards.length; i++){
+        if (!visited[i]) dfs(cards[i], cards, visited, [])
     }
     
     if (ans.length === 1) return 0
