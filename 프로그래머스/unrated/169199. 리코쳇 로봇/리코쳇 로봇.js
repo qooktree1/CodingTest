@@ -38,7 +38,5 @@ const bfs = (sx, sy, board, visit) => {
 const solution = board => {
    const [sx, sy] = findStart(board)
    const visited = Array.from(Array(board.length), () => Array(board[0].length).fill(0))
-   
-   const ans = bfs(sx, sy, board, visited)
-   return ans
+   return bfs(sx, sy, board, visited)
 }
