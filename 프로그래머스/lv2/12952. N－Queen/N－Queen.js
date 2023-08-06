@@ -1,32 +1,32 @@
-const solution = n => {
-    let ans = 0
-    let queen = Array(n).fill(0)
+const dfs = (queen, n, row) => {
+    let cnt = 0
+    if (n === row) return 1  // 끝까지 도달하면 +1
     
-    const dfs = row => {
-        if (n === row) ans++
+    for (let col=0; col<n; col++){
+        queen[row] = col
         
-        for (let col=0; col<n; col++){
-            queen[row] = col
-            let checker = true
-            for (let i=0; i<row; i++){
-                if (queen[row] === queen[i]){
-                    checker = false
-                    break
-                }
-                if (Math.abs(queen[row] - queen[i]) === Math.abs(i-row)){
-                    checker = false
-                    break
-                }
+        let flag = true
+        for (let x=0; x<row; x++){
+            
+            // 세로 겹치는 경우
+            if (queen[x] === queen[row]){
+                flag = false
+                break
             }
-            if (checker) dfs(row+1)
+            
+            // 대각선 겹치는 경우
+            if (Math.abs(queen[x]-queen[row]) === row-x){
+                flag = false
+                break
+            }
         }
+        if (flag) cnt += dfs(queen, n, row+1)  // 다음 퀸 배치
     }
-    
-    for (let i=0; i<n; i++){
-        queen[0] = i
-        dfs(1)
-    }
-    
-    
-    return ans
+    return cnt
+}
+
+
+const solution = n => {
+    const queen = Array(n).fill(0)
+    return dfs(queen, n, 0)
 }
