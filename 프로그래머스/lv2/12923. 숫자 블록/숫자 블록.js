@@ -5,13 +5,20 @@ const biggestPrimeNumber = n => {
     
     let maxNum = 1
     for (let i=2; i<=n**(1/2); i++){
-        // i가 최대일때
-        if (n % i === 0 && i <= 10000000){
-            maxNum = Math.max(maxNum, i)
-            
-            // n/i가 최대일때
-            if (n/i <= 10000000) maxNum = Math.max(maxNum, n/i)
+        
+        // n/i가 최대일때 - n이 작기 때문에 바로 break로 return
+        if (n % i === 0 && n / i <= 1e7){
+            maxNum = n / i
+            break
         }
+        
+        // i가 최대일때 - 최대치 갱신
+        else if (n % i === 0 && n / i > 1e7 && i <= 1e7 && i > maxNum){
+            maxNum = i
+        }
+            
+            
+        
     }
     return maxNum
 }
