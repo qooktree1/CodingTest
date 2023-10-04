@@ -1,7 +1,6 @@
 const solution = (idList, reports, k) => {
     const reportDict = {}
     const reportConnection = {}
-    const suspendedId = []
     const ans = []
     
     for (const id of idList){
@@ -14,12 +13,6 @@ const solution = (idList, reports, k) => {
         if (!reportConnection[from].includes(to)){
             reportConnection[from].push(to)
             reportDict[to] += 1  // 신고받은 횟수 저장
-        }
-    }
-    
-    for (const report in reportDict){
-        if (k <= reportDict[report]){
-            suspendedId.push(report)
         }
     }
     
