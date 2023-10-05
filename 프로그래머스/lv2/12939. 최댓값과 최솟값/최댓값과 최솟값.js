@@ -1,7 +1,14 @@
-function solution(s) {
-    const array = s.split(" ")
-    const maxVal = Math.max(...array)
-    const minVal = Math.min(...array)
-    const answer = String(minVal) + " " + String(maxVal)
-    return answer
+const solution = s => {
+    const numbers = s.split(" ").map(Number)
+    
+    let maxNum = minNum = numbers.shift()
+    for (const num of numbers){
+        if (maxNum < num){
+            maxNum = num
+        }
+        if (minNum > num){
+            minNum = num
+        }
+    }
+    return [minNum, maxNum].join(" ")
 }
