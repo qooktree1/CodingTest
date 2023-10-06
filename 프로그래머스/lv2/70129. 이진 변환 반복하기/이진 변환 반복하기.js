@@ -1,17 +1,19 @@
-function solution(s) {
-    let convertCnt = 0
+const solution = s => {
+    let procedureCnt = 0
     let zeroCnt = 0
-    
-    while (1) {
-        const originLen = s.length
-        s = s.split("").filter(x => x === "1").join("")
-        zeroCnt += originLen - s.length
-        convertCnt += 1
-        s = s.length.toString(2)
-        if (s === "1") {
-            return [convertCnt, zeroCnt]
+        
+    const makeOne = s => {
+        if (s === "1") return
+        else {
+            let newS = ""
+            for (const c of s){
+                if (c === "1") newS += c
+                else zeroCnt++
+            }
+            procedureCnt++
+            makeOne(newS.length.toString(2))
         }
-        
     }
-        
+    makeOne(s)
+    return [procedureCnt, zeroCnt]
 }
