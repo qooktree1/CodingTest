@@ -1,6 +1,6 @@
 # [level 2] 숫자의 표현 - 12924 
 
-[문제 링크](https://programmers.co.kr/learn/courses/30/lessons/12924?language=python3) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12924?language=python3) 
 
 ### 성능 요약
 
@@ -12,7 +12,7 @@
 
 ### 채점결과
 
-<br/>정확성: 70.0<br/>효율성: 30.0<br/>합계: 100.0 / 100.0
+정확성: 75.0<br/>효율성: 25.0<br/>합계: 100.0 / 100.0
 
 ### 문제 설명
 
@@ -52,6 +52,10 @@
 
 <p>입출력 예#1<br>
 문제의 예시와 같습니다.</p>
+
+<hr>
+
+<p>※ 공지 - 2022년 3월 11일 테스트케이스가 추가되었습니다.</p>
 
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
