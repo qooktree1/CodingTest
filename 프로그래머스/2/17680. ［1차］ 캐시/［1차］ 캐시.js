@@ -7,22 +7,17 @@ const solution = (cacheSize, cities) => {
     
     for (let city of cities) {
         city = city.toLowerCase()
-        const findCity = cache.indexOf(city)
-        if (findCity !== -1) {
-            const index = findCity
-            cache.splice(index, 1)
-            cache.push(city)
+        const findCityIndex = cache.indexOf(city)
+        if (findCityIndex !== -1) {  // city 배열에 city가 있는 경우
             answer++
+            const index = findCityIndex
+            cache.splice(index, 1)
         } else {
             answer += 5
-            if (cacheCnt < cacheSize) {
-                cache.push(city)
-                cacheCnt++
-            } else {
-                cache.shift()
-                cache.push(city)
-            }
+            if (cacheCnt < cacheSize) cacheCnt++
+            else cache.shift()  // 캐시 크기가 꽉 차면 LRU 알고리즘으로 가장 먼저 들어왔던 것 부터 pop
         }
+        cache.push(city)
     }
     return answer
 }
