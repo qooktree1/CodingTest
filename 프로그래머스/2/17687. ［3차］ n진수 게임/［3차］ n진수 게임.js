@@ -1,14 +1,21 @@
-// n: 진법, t: 미리 구할 숫자의 갯수, m: 참가 인원, p: 튜브의 순서
-function solution(n, t, m, p) {
-    let answer = ""
-    let number = 0
-    let allNumber = ""
-    for (let number=0; number <= 100000; number++){
-        allNumber += number.toString(n).toUpperCase()
+const createStr = (n, t, m) => {
+    let allStr = ""
+    for (let i=0; i<=t * m; i++) {
+        const convertedNumber = i.toString(n)
+        allStr += convertedNumber.toUpperCase()
+    }
+    return allStr
+}
+
+
+const solution = (n, t, m, p) => {
+    let ans = ""
+    let allStr = createStr(n, t, m)
+    for (let i = p - 1; i < allStr.length; i += m) {
+        ans += allStr[i]
+        if (ans.length === t) return ans
     }
     
-    for (let i = 0; i < t; i++){
-        answer += allNumber[p-1 + m * i]
-    }
-    return answer
+    
+    return ans
 }
