@@ -1,26 +1,28 @@
-const solution = maps => {
-    const visited = maps
-    const [N, M] = [maps.length, maps[0].length]
-    const q = [[0, 0, 1]]
+const dfs = (maps, visited, ex, ey) => {
+    const q = [[0, 0]]
+    const [n, m] = [maps.length, maps[0].length]
     visited[0][0] = 1
     
-    const dx = [-1, 1, 0, 0]
-    const dy = [0, 0, -1, 1]
-    
-    while (q.length > 0){
-        const [x, y, moves] = q.shift()
-        if (x === N-1 && y === M-1) return visited[x][y]
-        
-        for (let d=0; d<4; d++){
-            const [nx, ny] = [x + dx[d], y + dy[d]]
+    while (q.length > 0) {
+        const [x, y] = q.shift()
+        if (x === ex && y === ey) return visited[x][y]
+        for (let [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+            let nx = x + dx
+            let ny = y + dy
             
-            if (0 <= nx && nx < N && 0 <= ny && ny < M && visited[nx][ny]){
-                if (nx === N-1 && ny === M-1) return moves + 1
-                q.push([nx, ny, moves + 1])
-                visited[nx][ny] = 0
+            if (0 <= nx && nx < n && 0 <= ny && ny < m && visited[nx][ny] === 0 && maps[nx][ny] === 1) {
+                visited[nx][ny] = visited[x][y] + 1
+                
+                q.push([nx, ny])
             }
         }
     }
     
-    return -1
+    return -1  // 도달할 방법이 없는 경우
+}
+
+
+const solution = maps => {
+    const visited = Array.from(new Array(maps.length), () => Array(maps[0].length).fill(0))
+    return dfs(maps, visited, maps.length - 1, maps[0].length - 1)
 }
