@@ -1,22 +1,24 @@
 const solution = dirs => {
-    let visited = new Set()
-    const d = {
-        "U": [0, 1],
-        "D": [0, -1],
-        "R": [1, 0],
-        "L": [-1, 0]
+    const dirTable = {
+        "U": [-1, 0],
+        "D": [1, 0],
+        "L": [0, -1],
+        "R": [0, 1]
     }
-    let now = [0, 0]
+    const visitedSet = new Set()
+    let x = 0, y = 0
     
-    for (const dir of dirs){
-        let [nx, ny] = [now[0] + d[dir][0], now[1] + d[dir][1]]
+    for (const dir of dirs) {
+        const nextMove = dirTable[dir]
+        let nx = x + nextMove[0]
+        let ny = y + nextMove[1]
         
-        if (nx > 5 || nx < -5 || ny > 5 || ny < -5) continue
-        
-        visited.add("" + now[0] + now[1] + nx + ny)
-        visited.add("" + nx + ny + now[0] + now[1])
-        now = [nx, ny]
-        
+        if (-5 <= nx && nx <= 5 && -5 <= ny && ny <= 5) {
+            visitedSet.add([x, y, nx, ny].join(""))
+            visitedSet.add([nx, ny, x, y].join(""))
+            x = nx
+            y = ny
+        }
     }
-    return visited.size / 2
+    return visitedSet.size / 2
 }
