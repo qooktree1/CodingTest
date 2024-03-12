@@ -1,0 +1,1 @@
+const solution = strList => strList.map(str => str.length)
