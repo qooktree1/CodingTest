@@ -1,0 +1,1 @@
+const solution = numList => numList.sort((a,b) => a-b).slice(0, 5)
