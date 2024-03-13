@@ -1,0 +1,1 @@
+const solution = (str, k) => str.repeat(k)
