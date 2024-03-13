@@ -1,0 +1,1 @@
+const solution = (myString, overwriteString, s) => myString.slice(0, s) + overwriteString + myString.slice(overwriteString.length + s)
