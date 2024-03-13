@@ -1,0 +1,1 @@
+const solution = (s1, s2) => s2.filter(item => new Set(s1).has(item)).length
