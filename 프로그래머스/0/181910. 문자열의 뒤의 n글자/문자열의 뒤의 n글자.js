@@ -1,0 +1,1 @@
+const solution = (myString, n) => myString.slice(myString.length - n)
