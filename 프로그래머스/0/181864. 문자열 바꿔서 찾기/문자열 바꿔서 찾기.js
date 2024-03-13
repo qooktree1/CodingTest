@@ -1,0 +1,1 @@
+const solution = (myString, pat) => myString.includes(pat.replaceAll('A', 'a').replaceAll('B', 'A').replaceAll('a', 'B')) ? 1 : 0
