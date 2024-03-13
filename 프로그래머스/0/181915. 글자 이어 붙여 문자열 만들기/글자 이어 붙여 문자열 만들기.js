@@ -1,0 +1,1 @@
+const solution = (myStr, idxList) => idxList.map(idx => myStr[idx]).join('')
