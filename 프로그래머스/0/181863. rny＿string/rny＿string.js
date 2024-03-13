@@ -1,0 +1,1 @@
+const solution = rnyString => rnyString.replaceAll('m', 'rn')
