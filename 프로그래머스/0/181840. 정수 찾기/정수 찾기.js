@@ -1,0 +1,1 @@
+const solution = (numList, n) => numList.includes(n) ? 1 : 0
