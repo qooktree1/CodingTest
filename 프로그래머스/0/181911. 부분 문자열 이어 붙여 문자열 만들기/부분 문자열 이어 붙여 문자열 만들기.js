@@ -1,0 +1,1 @@
+const solution = (myStrings, parts) => myStrings.map((str, idx) => str.slice(parts[idx][0], parts[idx][1] + 1)).join('')
