@@ -1,0 +1,1 @@
+const solution = (n, t) => t === 0 ? n : solution(n * 2, t - 1)
