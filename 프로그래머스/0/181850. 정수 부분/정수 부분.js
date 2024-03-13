@@ -1,0 +1,1 @@
+const solution = flo => Number(String(flo).split('.')[0])
