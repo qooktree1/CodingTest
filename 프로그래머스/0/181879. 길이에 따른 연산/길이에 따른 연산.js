@@ -1,0 +1,1 @@
+const solution = numList => numList.length >= 11 ? numList.reduce((a,b) => a+b,0) : numList.reduce((a,b) => a*b, 1)
