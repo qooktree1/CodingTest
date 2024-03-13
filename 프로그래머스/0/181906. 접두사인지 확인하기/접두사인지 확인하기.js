@@ -1,0 +1,1 @@
+const solution = (myString, isPrefix) => myString.indexOf(isPrefix) === 0 ? 1 : 0
