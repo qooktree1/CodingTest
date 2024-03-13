@@ -1,0 +1,1 @@
+const solution = numList => numList.reduce((a,b) => a*b, 1) > numList.reduce((a,b) => a+b, 0) ** 2 ? 0 : 1
