@@ -1,0 +1,1 @@
+const solution = (todoList, finished) => todoList.filter((todo, idx) => !finished[idx] && todo)
