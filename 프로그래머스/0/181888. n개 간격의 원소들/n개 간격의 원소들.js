@@ -1,0 +1,1 @@
+const solution = (numList, n) => numList.filter((num, i) => i % n === 0 && num)
