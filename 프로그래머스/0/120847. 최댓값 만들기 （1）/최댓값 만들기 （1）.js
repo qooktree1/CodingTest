@@ -1,0 +1,1 @@
+const solution = numbers => numbers.sort((a,b) => b-a).slice(0, 2).reduce((a,b) => a * b, 1)
