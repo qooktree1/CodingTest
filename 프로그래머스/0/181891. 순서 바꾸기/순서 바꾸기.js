@@ -1,0 +1,1 @@
+const solution = (numList, n) => [...numList.slice(n), ...numList.slice(0, n)]
