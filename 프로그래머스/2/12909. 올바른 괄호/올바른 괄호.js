@@ -1,12 +1,8 @@
 const solution = s => {
-    let stack = 0
-    s.split("").forEach(c => {
-        if (stack === 0) stack += 1
-        else if (c === ")") stack -= 1
-        else if (c === "(") stack += 1
-        
-        if (stack === -1) return false
-    })
-    if (stack > 0) return false
-    return true
+    let stack = []
+    for (let i=0; i<s.length; i++) {
+        if (stack[stack.length - 1] === '(' && s[i] === ')') stack.pop()
+        else stack.push(s[i])
+    }
+    return stack.length ? false : true
 }
