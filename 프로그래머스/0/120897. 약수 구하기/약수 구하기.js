@@ -1,0 +1,1 @@
+const solution = n => Array.from(Array(n+1), (_, i) => n % i === 0 && i).filter(x => x)
