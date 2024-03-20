@@ -11,7 +11,7 @@ const binaryChange = str => {
 const solution = s => {
     let times = 0
     let zeroCnt = 0
-    while (s !== '1' && times < 10) {
+    while (s !== '1') {
         const [cnt, newS] = binaryChange(s)
         zeroCnt += cnt
         s = newS
