@@ -1,0 +1,1 @@
+const solution = array => array.reduce((a,b) => a + String(b).split("").filter(n => n === "7").length, 0)
