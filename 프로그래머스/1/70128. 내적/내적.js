@@ -1,0 +1,1 @@
+const solution = (a, b) => a.reduce((x, _, i) => x + a[i] * b[i], 0)
