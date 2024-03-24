@@ -1,0 +1,1 @@
+const solution = (before, after) => before.split("").sort().join("") === after.split("").sort().join("") ? 1 : 0
