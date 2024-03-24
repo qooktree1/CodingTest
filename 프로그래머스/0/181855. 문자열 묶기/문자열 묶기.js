@@ -1,12 +1,8 @@
 const solution = strArr => {
-    const strObj = {}
-    let maxGroupSize = 0
-    
-    for (const str of strArr) {
-        const strLen = str.length
-        strObj[strLen] = (strObj[strLen] ?? 0) + 1
-        maxGroupSize = Math.max(maxGroupSize, strObj[strLen])
+    const strLenArr = strArr.map(str => str.length)
+    const numberMap = {}
+    for (const num of strLenArr) {
+        numberMap[num] = numberMap[num] ? numberMap[num] + 1 : 1
     }
-    
-    return maxGroupSize
+    return Math.max(...Object.values(numberMap))
 }
