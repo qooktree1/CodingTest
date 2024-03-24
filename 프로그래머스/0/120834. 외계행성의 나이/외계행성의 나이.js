@@ -1,0 +1,1 @@
+const solution = age => String(age).split("").map(c => String.fromCharCode(+c + 97)).join("")
