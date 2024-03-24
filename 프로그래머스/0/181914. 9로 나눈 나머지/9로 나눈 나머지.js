@@ -1,0 +1,1 @@
+const solution = number => +String(number).split("").reduce((a,b) => a + +b, 0) % 9
