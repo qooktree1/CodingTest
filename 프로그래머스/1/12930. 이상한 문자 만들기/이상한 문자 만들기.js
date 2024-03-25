@@ -1,11 +1,9 @@
-const solution = (s) => {
-  return s
+const solution = (s) => s
     .split(" ")
     .map((word) =>
       word
         .split("")
-        .map((c, idx) => (idx % 2 === 0 ? c.toUpperCase() : c.toLowerCase()))
+        .map((c, idx) => (idx % 2 ? c.toLowerCase() : c.toUpperCase()))
         .join("")
     )
     .join(" ");
-};
