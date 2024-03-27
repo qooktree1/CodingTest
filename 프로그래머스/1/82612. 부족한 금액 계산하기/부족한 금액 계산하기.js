@@ -1,0 +1,1 @@
+const solution = (price, money, count) => Math.max(Array.from({length: count}, (_, i) => (i+1) * price).reduce((a,b) => a+b,0) - money, 0)
