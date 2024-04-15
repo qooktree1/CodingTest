@@ -1,25 +1,17 @@
-// rate = 0
-
 const solution = (progresses, speeds) => {
-    let sameTime = 0
+    const neccessaryTimes = progresses.map((progress, idx) => Math.ceil((100 - progress) / speeds[idx]))
+    console.log(neccessaryTimes)
     const answer = []
-    let maxRate = 0
-    let rate = 0
-    for (let i=0; i<progresses.length; i++) {
-        rate = Math.ceil((100 - progresses[i]) / speeds[i])
-        
-        if (sameTime === 0) {
-            maxRate = rate
-            sameTime++
-        } else if (rate <= maxRate) {
-            sameTime++
-        } else {
-            answer.push(sameTime)
-            sameTime = 1
-            maxRate = rate
+    let sameDay = 1
+    let compareTime = neccessaryTimes[0]
+    for (let i=0; i<neccessaryTimes.length - 1; i++) {
+        if (compareTime >= neccessaryTimes[i + 1]) sameDay++
+        else {
+            answer.push(sameDay)
+            sameDay = 1
+            compareTime = neccessaryTimes[i + 1]
         }
     }
-    if (sameTime > 0) answer.push(sameTime)
-        
+    if (sameDay) answer.push(sameDay)
     return answer
 }
