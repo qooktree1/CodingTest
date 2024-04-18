@@ -1,18 +1,15 @@
-let answer = 0
-
-const dfs = (n, ssum, target, numbers) => {
-    // 종료 조건
-    if (n === numbers.length) {
+const solution = (numbers, target) => {
+    let answer = 0
+    
+    const dfs = (cnt, idx, ssum, target) => {
+    if (cnt === numbers.length) {
         if (ssum === target) answer++
         return
     }
-    
-    dfs(n + 1, ssum + numbers[n], target, numbers)
-    dfs(n + 1, ssum - numbers[n], target, numbers)
-}
+        dfs(cnt + 1, idx + 1, ssum + numbers[idx], target)
+        dfs(cnt + 1, idx + 1, ssum - numbers[idx], target)
+    }
 
-
-const solution = (numbers, target) => {
-    dfs(0, 0, target, numbers)
+    dfs(0, 0, 0, target)
     return answer
 }
