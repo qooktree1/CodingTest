@@ -1,13 +1,9 @@
 const solution = (A, B) => {
     let answer = 0
-    const bArr = [...A]
     for (let i=0; i<A.length; i++) {
-        if (B === bArr.join("")) return answer
-        else {
-            bArr.unshift(bArr.pop())
-            answer++
-        }
+        if (A === B) return answer
+        B = B.substring(1, B.length) + B[0]
+        answer++
     }
-    
     return -1
 }
