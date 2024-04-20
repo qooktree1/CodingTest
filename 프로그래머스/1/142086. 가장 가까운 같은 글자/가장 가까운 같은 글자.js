@@ -1,13 +1,10 @@
 const solution = s => {
-    const dict = {}
-    const answer = []
-    for (let i=0; i<s.length; i++){
-        if (s[i] in dict) {
-            answer.push(i - dict[s[i]])
-        } else {
-            answer.push(-1)
-        }
-        dict[s[i]] = i
+    const cDict = {}
+    const answer = []    
+    for (let i=0; i<s.length; i++) {
+        if (cDict[s[i]] === undefined) answer.push(-1)
+        else answer.push(i - cDict[s[i]])
+        cDict[s[i]] = i
     }
     return answer
 }
