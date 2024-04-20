@@ -1,16 +1,12 @@
-const solution = (k, tangerines) => {
-    let ans = 0
-    const tangerineObject = {}
-    for (const tangerine of tangerines) {
-        if (tangerine in tangerineObject) tangerineObject[tangerine] += 1
-        else tangerineObject[tangerine] = 1        
+const solution = (k, tangerine) => {
+    const tangerineObj = {}
+    for (const num of tangerine) {
+        tangerineObj[num] = (tangerineObj[num] || 0) + 1
     }
-    const sortedTangerines = [...Object.entries(tangerineObject)].sort((a,b) => b[1] - a[1])
-    
-    for (const arr of sortedTangerines) {
-        k -= arr[1]
-        ans++
-        if (k <= 0) return ans
+    const tangerineArr = [...Object.values(tangerineObj).sort((a,b) => b - a)]
+    let answer = 0
+    for (let i=0; i<tangerineArr.length; i++) {
+        k -= tangerineArr[i]
+        if (k <= 0) return i + 1
     }
-    return ans
 }
