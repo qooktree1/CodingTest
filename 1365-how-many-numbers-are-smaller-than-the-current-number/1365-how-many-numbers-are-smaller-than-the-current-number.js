@@ -1,0 +1,1 @@
+const smallerNumbersThanCurrent = nums => nums.map(num => nums.filter(n => n < num).length)
