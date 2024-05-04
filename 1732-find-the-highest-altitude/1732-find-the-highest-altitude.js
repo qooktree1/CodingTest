@@ -1,9 +1,9 @@
 const largestAltitude = gain => {
-    const arr = [0]
     let answer = 0
-    gain.forEach(num => {
-        answer = Math.max(answer, arr[arr.length - 1] + num)
-        arr.push(arr[arr.length - 1] + num)
-    })
+    let curr = 0
+    for (let i = 0; i < gain.length; i++) {
+        curr += gain[i]
+        answer = Math.max(answer, curr)
+    }
     return answer
 }
