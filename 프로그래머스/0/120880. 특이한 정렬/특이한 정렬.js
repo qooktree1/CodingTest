@@ -1,5 +1,1 @@
-const solution = (numList, n) => numList.sort((a, b) => {
-        const [aDist, bDist] = [Math.abs(n - a), Math.abs(n - b)]
-        if (aDist === bDist) return b - a
-        return aDist - bDist
-})
+const solution = (numList, n) => numList.sort((a,b) => Math.abs(a - n) - Math.abs(b - n) || b - a)
