@@ -1,0 +1,1 @@
+const isAcronym = (words, s) => s === words.map(word => word[0]).join("")
